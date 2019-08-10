@@ -1,0 +1,33 @@
+<% include ../partials/header %>
+<link rel="stylesheet" href="First.css" type="text/css"/>
+
+<div class="row" style="text-align: center; ">
+  <h1>Welcome to the Edit products page</h1>  <br>
+  <div style="text-align: center; width: 100%; background-color: rgba(255, 255, 255, 0.8);text-align: center; margin-bottom: 10px;" >
+        
+          <% result.forEach(function(product) { %>
+         <form accept-charset="UTF-8" style="display: inline-block; width: 90%;" action="/editproduct/<%= product.Id %>" method="post">
+                  
+                  
+                    <label for="name">Name</label>
+                    <input name="name" type="text" value="<%= product.Name %>" />
+                     
+                     <label for="activity">Activity</label>
+                    <input name="activity" type="text" value="<%= product.Activity %>" />
+                   
+                   <label for="price">Price</label> 
+                    <input name="price" type="text" value="<%= product.Price %>" />
+                    
+                    <label for="image">Image</label> 
+                    <input name="image" type="text" value="<%= product.Image %>" />
+
+
+
+<button class="button">Edit</button>
+          </div>
+              </form>
+              <% }); %>
+    </div>
+  
+</div>
+<% include ../partials/footer %>

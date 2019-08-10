@@ -1,0 +1,137 @@
+<% include ../partials/header %>
+<html>
+	
+
+<head>
+<title>Plans For Schools</title>
+<link rel="stylesheet" href="First.css" type="text/css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<header class="w3-container w3-theme w3-padding" id="myHeader">
+
+  
+  
+  <div class="w3-center">
+  <h4>Check out the curriculum documents here</h4>
+  <h1 class="w3-xxxlarge w3-animate-bottom">Click the subject see more</h1>
+    
+  </div>
+</header>
+
+<h1>The Primary School Curriculum Books </h1>
+<p>Click below to view the curriculum books</p>
+
+<div id="books">
+ <button onclick="prev()" class="button1">Prev</Button>
+
+ <a id="slidelink" href="" target="_blank" ><img id="slider" src="intro.png" alt="Curriculum"></a>
+ <button onclick="next()" class="button2">Next</button> 
+
+</div>
+
+ <div class="center">
+
+<a href="https://curriculumonline.ie/getmedia/c4a88a62-7818-4bb2-bb18-4c4ad37bc255/PSEC_Introduction-to-Primary-Curriculum_Eng.pdf" target="_blank">Introduction</a>
+<a href="https://curriculumonline.ie/getmedia/5b514700-e65c-46a7-a7d0-c8e05e115bf9/PSEC01a_English_Curriculum.pdf" target="_blank">English</a>
+<a href="https://www.curriculumonline.ie/getmedia/920c3fd9-1f53-4163-a045-90f07ebb6b71/PSEC01b-Gaeilge_curriculum.pdf" target="_blank">Irish</a>
+<a href="https://www.nurneyns.com/Catholic%20Primary%20Religious%20Education%20Curriculum%20for%20Ireland.pdf" target="_blank">Religion</a>
+<a href="https://www.curriculumonline.ie/getmedia/9df5f3c5-257b-471e-8d0f-f2cf059af941/PSEC02_Mathematics_Curriculum.pdf" target="_blank">Maths</a>
+<a href="https://www.curriculumonline.ie/getmedia/6d3a3e34-69ed-464e-9d3e-002ab7e47140/PSEC04c_Music_Curriculum.pdf" target="_blank">Music</a>
+<a href="https://www.curriculumonline.ie/getmedia/f2199a0a-9562-4643-b95f-a2fc272ccf13/PSEC04b_Drama_Curriculum.pdf" target="_blank">Drama</a>
+<a href="https://www.curriculumonline.ie/getmedia/346522bd-f9f6-49ce-9676-49b59fdb5505/PSEC03c_Science_Curriculum.pdf" target="_blank">Science</a>
+<a href="https://www.curriculumonline.ie/getmedia/6e999e7b-556a-4266-9e30-76d98c277436/PSEC03b_Geography_Curriculum.pdf" target="_blank">Geography</a>
+<a href="https://www.curriculumonline.ie/getmedia/4b95f9d8-a307-4ef0-bbf0-b3b9047f31f0/PSEC03a_History_Curriculum.pdf" target="_blank">History</a>
+<a href="https://www.curriculumonline.ie/getmedia/462570f8-27cc-4f5b-a13e-d1e2de8c18d2/PSEC06_SPHE_curriculum.pdf" target="_blank">SPHE</a>
+<a href="https://www.curriculumonline.ie/getmedia/ca8a385c-5455-42b6-9f1c-88390be91afc/PSEC05_Physical-Education_Curriculum.pdf" target="_blank">PE</a>
+<a href="https://www.curriculumonline.ie/getmedia/0e0ccff3-97c4-45c8-b813-e7c119a650c3/PSEC04A_Visual_Arts_Curriculum.pdf" target="_blank">Art</a>
+</div>
+
+
+
+
+<footer>
+
+<button class="button" onclick="myFunction()">Subscribe</button>
+
+</footer>
+
+</body>
+
+
+<script>
+
+
+function myFunction() {
+
+prompt("Enter your email")
+
+}
+var images = ["intro.png", "eng.png","irish.png","religion.png","maths.png","music.png","drama.png","science.png","geog.png","hist.png","sphe.png","pe.png","art.png"];
+
+var link = ["https://curriculumonline.ie/getmedia/c4a88a62-7818-4bb2-bb18-4c4ad37bc255/PSEC_Introduction-to-Primary-Curriculum_Eng.pdf",
+"https://curriculumonline.ie/getmedia/5b514700-e65c-46a7-a7d0-c8e05e115bf9/PSEC01a_English_Curriculum.pdf", 
+"https://www.curriculumonline.ie/getmedia/920c3fd9-1f53-4163-a045-90f07ebb6b71/PSEC01b-Gaeilge_curriculum.pdf",
+"https://www.nurneyns.com/Catholic%20Primary%20Religious%20Education%20Curriculum%20for%20Ireland.pdf",
+"https://www.curriculumonline.ie/getmedia/9df5f3c5-257b-471e-8d0f-f2cf059af941/PSEC02_Mathematics_Curriculum.pdf"
+];
+var num=0;
+
+function next()  {
+	var slider = document.getElementById("slider");
+	num++;
+	if(num >= images.length) {
+	num=0;
+	}
+	slider.src = images[num];
+	
+	
+	//var link = document.getElementById("slidelink");
+	
+	slidelink.href= link[num];
+	//link.setAttribute('href', "img");
+}
+
+function prev()  {
+	var slider = document.getElementById("slider");
+	num--;
+	if(num <= 0 ) { 
+	
+	num=0;
+	
+	}
+	slider.src = images[num];
+	}
+	
+$(function(){
+$("#item").click(function(){
+$("#submenu").slideToggle(1000);
+});
+});
+
+
+//$(".button1").mouseover(function(){
+
+//$(".button1").css("background-color", "blue");
+
+//});
+
+
+//function imagesClick () {
+
+//for (var images = "intro.png")
+
+//images.onclick = 
+//}
+</script>
+
+</html>
+
+
+
+<% include ../partials/footer %>

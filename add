@@ -1,0 +1,134 @@
+
+var dhcpd = require('dhcp');
+var fs = require("fs");
+
+
+
+var s = dhcpd.createServer({
+  // System settings
+
+  
+
+  
+  range: [
+    "192.168.1.10", "192.168.1.20"
+  ],
+  forceOptions: ['hostname'], // Options that need to be sent, even if they were not requested
+  randomIP: true, // Get random new IP from pool instead of keeping one ip
+  static: {
+     
+    // this line forsefully binds a mac address to an IP
+   // "A8-5B-78-9C-8D-CA": "192.168.1.88",
+   // "78-0C-B8-33-28-F9": "192.168.1.87"
+  },
+
+  // Option settings
+  netmask: '255.255.255.0',
+  router: [
+    '192.168.0.1'
+  ],
+  timeServer: null,
+  nameServer: null,
+  //dns: ["8.8.8.8", "8.8.4.4"],
+  hostname: "kacknup",
+  domainName: "xarg.org",
+  broadcast: '192.168.0.255',
+  server: '192.168.0.1', // This is us
+  maxMessageSize: 1500,
+  leaseTime: 86400,
+  renewalTime: 60,
+  rebindingTime: 120,
+
+});
+// The iPhone is A8-5B-78-9C-8D-CA
+s.on('message', function(data) {
+// Access the device list
+// var devices = require("http://192.168.1.4:3000/liam.txt");
+// var devices = require("http://192.168.1.4:3000/devices.json");
+var devices = require("./devices/devices.json");
+var newdevices = require("./devices/newdevice.json");
+
+      //This function filters the device list based on the MAC of joining device 
+            function chooseContact(indOne){
+            return indOne.MAC === data.chaddr;
+          
+          }
+      
+      
+                var indOne = devices.filter(chooseContact)
+                var oneDevice = JSON.stringify(indOne)
+     
+                console.log("One Filtered Device " + oneDevice)
+
+                console.log("\n\nThe MAC Address of the device that just attempted to join: " + data.chaddr + "\n\n");
+                // This line looks in the json file to see if the Mac Address is there and that the True is recorded against device1Auth & device2Auth
+                console.log('I Looked in JSON and saw ---- '+ indOne.some(item => item.MAC === data.chaddr && item.device1Auth === true & item.device2Auth === true));
+ 
+   //var inDevice= arr.some(item => item.id === data.chaddr)
+
+
+  //if(inDevice == true){console.log("\n\nDevice authorised")}else{console.log("\n\nmismatch: Get off my network")}
+
+// Attempt to automate Mac Address 
+// The idea is to add the new device MAC to a JSON file
+// Then read from that JSON file on the authenticate device page and fill the text box with the value
+
+var contactsx = {
+                 
+                 
+  MAC: data.chaddr
+     
+ }
+ 
+ 
+fs.readFile('./devices/newdevice.json', 'utf8',  function readfileCallback(err){
+
+if(err) {
+throw(err)
+
+} else {
+  newdevices.splice(0, 1, {MAC: data.chaddr})
+  //newdevices.push(contactsx); // add the new data to the JSON file
+json = JSON.stringify(newdevices, null, 4); // this line structures the JSON so it is easy on the eye
+
+fs.writeFile('./devices/newdevice.json',json, 'utf8', function(){})
+
+console.log(contactsx)
+}
+
+})         
+
+// attempt tp automate mac address end
+
+
+});
+
+s.on('bound', function(state) {
+// A8-5B-78-9C-8D-CA
+   // if(inDevice == true){console.log("\n\nLook you are in")}else{console.log("\n\nmismatch: Get off my network")}
+   if(1==1){console.log("A8-5B-78-9C-8D-CA")}
+ console.log("BOUND Nice Line:");
+ console.log(state);
+ 
+  
+});
+
+s.on("error", function(err, data) {
+  console.log(err, data);
+});
+
+s.on("listening", function(sock) {
+  var address = sock.address();
+  console.info('Server Listening: ' + address.address + ':' + address.port);
+});
+
+s.on("close", function() {
+  console.log('close');
+});
+
+
+s.listen();
+
+process.on('SIGINT', () => {
+  s.close();
+});

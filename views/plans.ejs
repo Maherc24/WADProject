@@ -1,0 +1,50 @@
+<% include ../partials/header %>
+<link rel="stylesheet" href="First.css" type="text/css"/>
+
+<div class="row">
+        
+         
+          <h1>Welcome to the plans page</h1>
+            <br>
+            <h2>Upload your fortnightly plans here</h2>
+            
+        
+          <div class="box">
+        <% result.forEach(function(product) { %>
+                       
+                      
+                        <div class="item">     
+                        <h1 class="itemtitle">Id: <%= product.Id %> </h1>
+                        <h1 class="plan">Subject: <%= product.Name %></h1>
+                        <p class="plan">Class: <%= product.Activity %></p>
+                        <p class="plan">Type: €<%= product.Price %></p>
+                      <a href="/product/<%= product.Id %>" class="button">View</a>
+                        <a href="/editproduct/<%= product.Id %>" class="button">Edit</a>
+  <p class="button" id="doit<%= product.Id %>">Delete</a>
+  <p id="yes<%= product.Id %>" style="display:none">
+  Are you sure?
+                        <a href="/delete/<%= product.Id %>" class="button">Yes</a>
+             </p>
+             
+             <script>
+               $(document).ready(function(){
+                 $("#doit<%= product.Id %>").click(function(){
+                   $("#yes<%= product.Id %>").slideToggle(2000);
+                   
+                 })
+                 
+               })
+               
+             </script>
+             
+                        </div>
+           
+    
+  
+  <% }); %>
+        
+        </div>
+ <a href="/addproduct" class="button">Add New Plan</a>
+    </div>
+
+<% include ../partials/footer %>

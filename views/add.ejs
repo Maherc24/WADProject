@@ -1,0 +1,28 @@
+<% include ../partials/header %>
+<link rel="stylesheet" href="First.css" type="text/css"/>
+
+
+<div class="row">
+  <h1>Suggestion page <br>
+<div style="text-align: center; width: 100%; background-color: rgba(255, 255, 255, 0.8);text-align: center; margin-bottom: 10px;" >
+         
+         
+         
+         <form accept-charset="UTF-8" style="display: inline-block; width: 90%;" action="/add" method="post" >    
+                <div class="item">
+                  <label for="name">Name</label>
+                    <input name="name" type="text" placeholder="Enter name", required  pattern='[a-z,0-9]' title="please only enter lettrs"/>
+                      <br><br><label for="price">Suggestion</label>
+                    <input name="Comment" type="text" placeholder="Enter your suggestion here", required title="Please do not leave this blank and enter text oly here"/>
+                   <br><br><label for="image">Email</label> 
+                    <input name="email" type="text" placeholder="Enter email", required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$]" />
+<button class="button">Add</button>
+          </div>
+              </form>
+    </div>
+  </h1>
+</div>
+
+
+
+<% include ../partials/footer %>

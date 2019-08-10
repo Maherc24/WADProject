@@ -1,0 +1,97 @@
+<% include ../partials/header %>
+
+
+<html>
+
+<head>
+<title>Plans For Schools</title>
+<link rel="stylesheet" href="First.css" type="text/css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<header class="w3-container w3-theme w3-padding" id="myHeader">
+
+  
+  
+  <div class="w3-center">
+  <h4>Our website is a place for teachers to plan their school year</h4>
+  <h1 class="w3-xxxlarge w3-animate-bottom">We make planning easy</h1>
+    
+  </div>
+</header>
+
+
+<h1>Plans For Schools</h1>
+<h1>Long and short term plans for all class levels </h1>
+
+<div id="books">
+	
+ <button onclick="prev()" class="button1">Prev</Button>
+	<button onclick="next()" class="button2">Next</button> 
+<br>
+
+ <img id="slider" src="img1.jpg" alt="Classroom" class="center">
+
+</div>
+
+<p class="p1">"Primary education consists of an eight year cycle: junior infants, senior infants, and first to sixth classes. The primary curriculum aims to provide a broad learning experience and encourages a rich variety of approaches to teaching and learning that cater for the different needs of individual children. The primary curriculum is designed to nurture the child in all dimensions of his or her life—spiritual, moral, cognitive, emotional, imaginative, aesthetic, social and physical. Some aspects of the primary curriculum are under review. A new language curriculum is currently being developed."-NCCA</p>
+
+ 
+ <p class="p1">Our website promotes cooperation and collaboration between primary school teachers in Ireland. </p>
+
+<footer>
+
+<button class="button" onclick="myFunction()">Subscribe</button>
+<% include ../partials/footer %>
+</footer>
+
+</body>
+
+
+
+<script>
+
+
+function myFunction() {
+
+prompt("Enter your email")
+
+}
+
+var images = ["img1.jpg", "img2.jpg", "img3.jpg", "img4.jpg", "img5.jpg"];
+
+var num=0;
+function next()  {
+	var slider = document.getElementById("slider");
+	num++;
+	if(num >= images.length) {
+	num=0;
+	}
+	slider.src = images[num];
+
+}
+
+function prev()  {
+	var slider = document.getElementById("slider");
+	num--;
+	if(num <= 0 ) { 
+	
+	num=0;
+	
+	}
+	slider.src = images[num];
+	}
+
+
+
+</script>
+
+</html>
+
+
+
